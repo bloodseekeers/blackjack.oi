@@ -89,11 +89,11 @@ body{
     border: 2px solid #000; 
     margin-top: 10px;
 }
-#cartasJugador{
+#cartasUsuario{
     margin-top: 30px;
     height: 150px;
 }
-#cartasJugador img{
+#cartasUsuario img{
     position: relative;
     height: 150px;
     max-width: 120px;
