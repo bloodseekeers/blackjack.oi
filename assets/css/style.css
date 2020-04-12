@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: url(https://image.freepik.com/foto-gratis/fondo-mesa-poker-verde-vineta-sombra_48277-156.jpg);
+    background-size: cover;
+    font-family:'Black Ops One', cursive;
+}
+.telm{
+    background: #000;
+}
+.title{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+.botns{
+    margin-top: 10px;
+}
+#nGame{
+    background-color: gold;
+    padding: 5px 5px 5px;
+    color: white;
+    font-weight: 600;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+#pCarta{
+    background-color:rgb(93, 230, 40);
+    padding: 5px 5px 5px;
+    color: white;
+    font-weight: 600;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+#detener{
+    background-color: red;
+    padding: 5px 5px 5px;
+    color: white;
+    font-weight: 600;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+#nGame:hover{
+    background-color: rgba(21, 194, 30, 0.733);
+    padding: 2px 2px;
+}
+#nGame:active{
+    padding: 2px 2px;
+}
+#pCarta:hover{
+    background-color: rgba(46, 180, 34, 0.658);
+    padding: 2px 2px;
+}
+#pCarta:active{
+    padding: 2px 2px;
+}
+#detener:hover{
+    background-color: rgba(46, 180, 34, 0.658);
+    padding: 2px 2px;
+}
+#detener:active{
+    padding: 2px 2px;
+}
+.score{
+    text-align: center;
+    background-color: rgba(211, 211, 211, 0.719);
+    width: 200px;
+    font-size: x-large;
+    font-weight: bolder;
+    margin-left: auto;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 2px solid #000; 
+    margin-top: 10px;
+
+}
+.cartajugador{
+    background-color: rgba(0, 0, 0, 0.63);
+    color: white;
+    font-size: x-large;
+    font-weight: bolder;
+    border-radius: 10px;
+    border: 2px solid #000; 
+    margin-top: 10px;
+}
+#cartasJugador{
+    margin-top: 30px;
+    height: 150px;
+}
+#cartasJugador img{
+    position: relative;
+    height: 150px;
+    max-width: 120px;
+    left: 100px;
+    margin-left: -75px;
+}
+.cartarobot{
+    background-color: rgba(0, 0, 0, 0.658);
+    color: white;
+    font-size: x-large;
+    font-weight: bolder;
+    border-radius: 10px;
+    border: 2px solid #000; 
+    margin-top: 10px;
+}
+#cartasRobot{
+    margin-top: 30px;
+}
+#cartasRobot img{
+    position: relative;
+    height: 150px;
+    max-width: 120px;
+    left: 100px;
+    margin-left: -75px;
+}
