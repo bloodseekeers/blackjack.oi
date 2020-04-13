@@ -100,7 +100,7 @@ const turnoComputadora = ( puntosMinimos ) => {
         } else {
             alert('Perdiste..! vuelve a intentarlo')
         }
-    }, 2000 );
+    }, 4000 );
 }
 
 
