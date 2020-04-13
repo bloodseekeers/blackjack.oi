@@ -69,15 +69,10 @@ body{
 }
 .score{
     text-align: center;
-    background-color: rgba(211, 211, 211, 0.719);
-    width: 200px;
-    font-size: x-large;
-    font-weight: bolder;
+    width: 100px;
     margin-left: auto;
     margin-right: 10px;
-    border-radius: 10px;
-    border: 2px solid #000; 
-    margin-top: 10px;
+    border-radius: 100%;
 
 }
 .cartajugador{
