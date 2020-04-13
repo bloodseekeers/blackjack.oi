@@ -92,7 +92,7 @@ const turnoComputadora = ( puntosMinimos ) => {
         if( puntosComputadora === puntosMinimos ) {
             window.setTimeout(()=>{
                 alert('Empate :P');
-            }, 1000)
+            }, 2000)
         } else if ( puntosMinimos > 21 ) {
             alert('Perdiste..! vuelve a intentarlo')
         } else if( puntosComputadora > 21 ) {
@@ -100,7 +100,7 @@ const turnoComputadora = ( puntosMinimos ) => {
         } else {
             alert('Perdiste..! vuelve a intentarlo')
         }
-    }, 5000 );
+    }, 2300 );
 }
 
 
