@@ -100,7 +100,7 @@ const turnoComputadora = ( puntosMinimos ) => {
         } else {
             alert('Perdiste..! vuelve a intentarlo')
         }
-    }, 100 );
+    }, 2000 );
 }
 
 
@@ -133,7 +133,7 @@ window.setTimeout(()=>{
         }
     
     });
-})
+}, 2000);
 
 
 btnDetene.addEventListener('click', () => {
