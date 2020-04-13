@@ -1,90 +1,150 @@
-// 2C = Two of Clubs
-// 2D = Two of Diaminds
-// 2H = Two of Hearts
-// 2S = Two of Spades
+/**
+ * 2C = Two of Clubs
+ * 2D = Two of Diamonds
+ * 2H = Two of Hearts
+ * 2S = Two of Spades
+ */
 
+let deck         = [];
+const tipos      = ['C','D','H','S'];
+const especiales = ['A','J','Q','K'];
 
-let deck    = [];
-const tipos = ["C", "D", "H", "S"];
-const especiales = ["A","j","Q", "k"];
-let puntosJugador = 0;
-let puntosIa = 0;
-// Referencia HTML
+let puntosJugador = 0,
+    puntosComputadora = 0;
 
-const botonpedir = document.querySelector('#pCarta');
+// Referencias del HTML
+// botones
+const pCarta   = document.querySelector('#pCarta');
+const btnDetene = document.querySelector('#detener');
+const btnNuevo   = document.querySelector('#nGame');
+// Cartas Tablero
+const divCartasJugador     = document.querySelector('#cartasUsuario');
+const divCartasComputadora = document.querySelector('#cartasRobot');
 
-const puntosUsuario = document.querySelector('#carpj');
+const puntosPersona = document.querySelector('#carpj');
+const puntoIa = document.querySelector('#puntosIa');
 
-const cartaUsuario = document.querySelector('#cartasUsuario');
+// Esta función crea un nuevo deck
+const crearDeck = () => {
 
-
-// Make of Deck o Creacion de Baraja
-
-const crearDeck = () =>{
-for (let i = 2; i <= 10; i++) {
-    for (let tipo of tipos) {
-        deck.push(i + tipo);    
+    for( let i = 2; i <= 10; i++ ) {
+        for( let tipo of tipos ) {
+            deck.push( i + tipo);
+        }
     }
-}
-for (let esp of especiales ) {
-    for (let tipo of tipos) {
-        deck.push(esp + tipo);
+
+    for( let tipo of tipos ) {
+        for( let esp of especiales ) {
+            deck.push( esp + tipo);
+        }
     }
+    deck = _.shuffle( deck );
+    return deck;
 }
-// baraja mezclada
-deck = _.shuffle(deck);
-return deck;
-}
- 
+
 crearDeck();
-// Pedir carta
 
-const pedirCarta = () =>{
-    if (deck.length===0) {
-        alert('No hay mas cartas en la baraja')
-        throw 'No hay cartas en la baraja'
-    }
-        const carta = deck.pop();
-        return carta;
-}
 
-// valor de carta que se pide
+// Esta función me permite tomar una carta
+const pedirCarta = () => {
 
-const valorCarta = ( carta ) => {
-    const valor = carta.substring(0, carta.length - 1);
-    return (isNaN(valor)) ?
-            (valor==='A') ? 11 : 10
-            : valor * 1
-}
-    const valor = valorCarta(pedirCarta());
-            // let puntos = 0;
-            // // asignar el valor
-            // if (isNaN( valor )) {
-            //     puntos = (valor==='A') ? 11 : 10
-            // } else {
-            //     puntos = valor * 1;
-            // }
-            // console.log(puntos)
-
-// DOM
-
-botonpedir.addEventListener('click',() => {
-    const carta = pedirCarta();
-    puntosJugador = puntosJugador + valorCarta( carta);
-    puntosUsuario.innerText=(puntosJugador);
-    // insertar carta al tablero
-    const imgCarta = document.createElement('img');
-    imgCarta.classList=('img-fluid');
-    imgCarta.src = `assets/cartas/${ carta }.png`;
-    cartaUsuario.append(imgCarta);
-    // puntos si obtuvo mas de 21 o menos
-    if (puntosJugador > 21) {
-        botonpedir.disabled = true;
+    if ( deck.length === 0 ) {
         window.setTimeout(()=>{
-            alert("Has perdido..! intentalo otra vez");
-        },  1000);
-
-    } else if (puntosJugador===21){
-            alert('Felicidades Ganaste...!' );
+            alert('Noy hay cartas en la baraja')
+        },1000)
+        
     }
- });
+    const carta = deck.pop();
+    return carta;
+}
+
+// pedirCarta();
+const valorCarta = ( carta ) => {
+
+    const valor = carta.substring(0, carta.length - 1);
+    return ( isNaN( valor ) ) ? 
+            ( valor === 'A' ) ? 11 : 10
+            : valor * 1;
+}
+
+// turno de la computadora
+const turnoComputadora = ( puntosMinimos ) => {
+
+    do {
+        const carta = pedirCarta();
+
+        puntosComputadora = puntosComputadora + valorCarta( carta );
+        puntosIa.innerText = puntosComputadora;
+        
+        // <img class="carta" src="assets/cartas/2C.png">
+        const imgCarta = document.createElement('img');
+        imgCarta.src = `assets/cartas/${ carta }.png`; //3H, JD
+        imgCarta.classList.add('carta');
+        divCartasComputadora.append( imgCarta );
+
+        if( puntosMinimos > 21 ) {
+            break;
+        }
+
+    } while(  (puntosComputadora < puntosMinimos)  && (puntosMinimos <= 21 ) );
+
+    setTimeout(() => {
+        if( puntosComputadora === puntosMinimos ) {
+            window.setTimeout(()=>{
+                alert('Empate :P');
+            }, 1000)
+        } else if ( puntosMinimos > 21 ) {
+            alert('Perdiste..! vuelve a intentarlo')
+        } else if( puntosComputadora > 21 ) {
+            alert('Ganaste !Felicidades¡');
+        } else {
+            alert('Perdiste..! vuelve a intentarlo')
+        }
+    }, 100 );
+}
+
+
+
+// Eventos
+window.setTimeout(()=>{
+
+    pCarta.addEventListener('click', () => {
+    
+        const carta = pedirCarta();
+        
+        puntosJugador = puntosJugador + valorCarta( carta );
+        puntosPersona.innerText = puntosJugador;
+        
+        // <img class="carta" src="assets/cartas/2C.png">
+        const imgCarta = document.createElement('img');
+        imgCarta.src = `assets/cartas/${ carta }.png`; //3H, JD
+        imgCarta.classList.add('carta');
+        divCartasJugador.append( imgCarta );
+    
+        if ( puntosJugador > 21 ) {
+            pCarta.disabled   = true;
+            btnDetene.disabled = true;
+            turnoComputadora( puntosJugador );
+            
+        } else if ( puntosJugador === 21 ) {
+            pCarta.disabled   = true;
+            btnDetene.disabled = true;
+            turnoComputadora( puntosJugador );
+        }
+    
+    });
+})
+
+
+btnDetene.addEventListener('click', () => {
+    pCarta.disabled   = true;
+    btnDetene.disabled = true;
+
+    turnoComputadora( puntosJugador );
+});
+
+btnNuevo.addEventListener('click', () => {
+
+  location.reload();
+
+});
